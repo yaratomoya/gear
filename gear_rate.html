@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ギア比計算機</title>
+<link rel="stylesheet"
+       href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js">
+</script>
+<script>
+function gearRate(){
+	var rgear=parseInt(document.js.rgear.value);
+	var fgear=parseInt(document.js.fgear.value);
+	var rate=0;
+
+	rate=fgear/rgear;
+	rate=Math.floor(rate*100)/100;
+	alert("ギア比は" + rate + "です。");
+}
+
+function distance(){
+	var rgear=parseInt(document.js.rgear.value);
+	var fgear=parseInt(document.js.fgear.value);
+	var tire=parseInt(document.js.tire.value);
+	var dst=0;
+	
+	rate=fgear/rgear;
+	dst=rate*tire;
+	dst/=1000;
+	dst=Math.floor(dst*100)/100;
+	alert("ペダル1回転で進む距離は" + dst + "[m]です。");
+}
+
+function speed(){
+	var rgear=parseInt(document.js.rgear.value);
+	var fgear=parseInt(document.js.fgear.value);
+	var tire=parseInt(document.js.tire.value);
+	var rpm=parseInt(document.js.rpm.value);
+	var dst=0, rps=0, spd=0;
+
+	rps=rpm/60;
+	rps=Math.floor(rps*100)/100;
+	rate=fgear/rgear;
+	dst=rate*tire;
+	dst/=1000;
+	dst=Math.floor(dst*100)/100;
+	spd=rps*dst;
+	spd=Math.floor(spd*100)/100;
+	spd=spd*3.6;
+	spd=Math.floor(spd*10)/10;
+	alert("時速は" + spd + "[km/h]です。");
+}
+</script>
+</head>
+<body>
+<form name="js">
+後スプロケット歯数[T]：<input type="text" name="rgear" value="" /></td>
+前チェンリング歯数[T]：<input type="text" name="fgear" value="" /></td>
+タイヤ周長[mm]：<input type="text" name="tire" value="" /></td>
+ペダル回転数[rpm]：<input type="text" name="rpm" value="" /></td>
+<input type="button" value="ギア比計算" onClick="gearRate()">
+<input type="button" value="距離計算" onClick="distance()">
+<input type="button" value="速度計算" onClick="speed()">
+<input type="reset" value="リセット">
+</form>
+<meta name = "apple-mobile-web-app-capable" content="yes" /> 
+</body>
+</html>
